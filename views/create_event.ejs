@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gigs</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+</head>
+
+<body>
+    <main class="container">
+        <h1>Insert Event</h1>
+
+        <form action="/insertevent" method="POST">
+
+            <label for="artist">Artist/Festival</label>
+            <select name="artist_field" required>
+              <option value="" selected>Select an artist…</option>
+              <option value="1000">Joesef</option>
+              <option value="1002">Brilliant Corners</option>
+              <option value="1005">The Illegals</option>
+            </select>
+
+            <!-- Grid -->
+            <div class="grid">
+
+                <!-- Markup example 1: input is inside label -->
+                <label for="venue">
+                    Venue
+                    <input  name="venue_field" placeholder="venue" required>
+                </label>
+                <label for="perform">
+                    Date of performance
+                    <input type="date"  name="date_field"  required>
+                </label>
+                
+                
+
+            </div>
+            <label for="details">
+                    Venue and event  Details
+                    <input  name="details_field" placeholder="details" required>
+            </label>
+             <!-- Button -->
+            <button type="submit">Submit</button>
+
+        </form>
+
+
+    </main>
+
+</body>
+
+</html>

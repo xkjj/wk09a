@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gigs</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+</head>
+
+<body>
+    <main class="container">
+
+
+        <% const options={ weekday: 'long' , month:'long', day: '2-digit' }; gigdata.forEach( (gig)=> {
+            let perform = gig.performs_on.toLocaleString('en-GB', options);
+
+            %>
+            <h1>
+                <%= `${gig.name} ${perform} `%>
+            </h1>
+            <article>
+                <header>
+                    <p>
+                        <% genredata.forEach (element=> { %>
+
+                            <%= element.genre_name %> ::
+
+                                <% }); %>
+                    </p>
+                    <p>
+                        <%= gig.details %>
+                    </p>
+                </header>
+
+                <div class="grid">
+                    <div>
+                        <%= gig.venue %>
+                    </div>
+                    <div>
+                        <a style="float:right;" href="/" role="button" data-tooltip="back to listings" class="contrast">
+                            back
+                        </a>
+                    </div>
+                </div>
+
+            </article>
+
+            <% }); %>
+
+
+
+    </main>
+
+</body>
+
+</html>

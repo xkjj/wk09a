@@ -48,7 +48,7 @@ app.get('/gig', (req, res) => {
                         WHERE gig_events.id = ${evid}`;
 
     connection.query(sqlevent, (err, rows) => {
-        
+
         if (err) throw err;
 
         let getband = rows[0].band_id;
@@ -62,12 +62,62 @@ app.get('/gig', (req, res) => {
 
             if (err) throw err;
             console.log(genres);
-            res.render('giglistings', { gigdata: rows, genredata:genres });
+            res.render('giglistings', { gigdata: rows, genredata: genres });
 
         });
 
-        
+
     });
+
+});
+
+app.get('/insertevent', (req, res) => {
+
+    let sqlbands = 'select * from gig_artists ORDER BY name ASC';
+    connection.query(sqlbands, (err, rows) => {
+
+        res.render('create_event', { bands: rows });
+    });
+
+
+});
+
+app.get('/insertartist', (req, res) => {
+
+    let getgenres = `SELECT * FROM gig_genres`
+    connection.query(getgenres, (err, rows) => {
+        res.render('create_performer', { genres: rows });
+    });
+});
+
+app.post('/insertartist', (req, res) => {
+
+    let artist = req.body.artist_field;
+    let descript = req.body.details_field;
+    let genreID = req.body.genre_field;
+    let artistID = res.insertId;
+
+    let insertbandsql = `INSERT INTO gig_artists (name, details) 
+                             VALUES ('${artist}', '${descript}');`;
+
+
+    connection.query(insertbandsql, (err, result) => {
+        if (err) throw err;
+        console.log(result.insertId);
+
+
+        let artistgenresql = `INSERT INTO gig_artist_genre (artist_id, genre_id)
+                                   VALUES ('${artistID}', '${genreID}');`;
+
+        connection.query(artistgenresql, (err2, result2) => {
+            if(err2) throw err2;
+            result2.send('artist added with a genre');
+
+
+        });
+
+    });
+
 
 });
 

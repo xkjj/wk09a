@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gigs</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+</head>
+
+<body>
+    <main class="container">
+        <h1>Insert Artist</h1>
+
+        <form action="/insertartist" method="POST">
+            <label for="artist">Name</label>
+            <input name="artist_field" >
+            <label for="details">
+                Performer Details
+               <input name="details_field" placeholder="details">
+            </label>
+             <label for="genre">genre of artist</label>
+              <select name="genre_field" > 
+                <% genres.forEach(element => { %>
+                    <option value="<%= element.id %>"><%= element.genre_name %></option>
+
+                    <%  }) %>
+             
+              </select>
+             <button type="submit">Submit</button>
+          </form>
+
+
+
+    </main>
+
+</body>
+
+</html>

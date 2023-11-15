@@ -18,9 +18,10 @@
             <label for="artist">Artist/Festival</label>
             <select name="artist_field" required>
               <option value="" selected>Select an artist…</option>
-              <option value="1000">Joesef</option>
-              <option value="1002">Brilliant Corners</option>
-              <option value="1005">The Illegals</option>
+              <% bands.forEach (element => { %>
+                    <option value="<%= element.id%>"><%= element.name%></option>
+
+                <% }); %>
             </select>
 
             <!-- Grid -->
